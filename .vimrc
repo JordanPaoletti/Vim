@@ -1,4 +1,46 @@
 set nocompatible	" Use Vim defaults (much better!)
+"vundle setting {{{
+filetype off
+
+"set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+"let vundle manage vundle
+Plugin 'VundleVim/Vundle.vim'
+
+
+"utlisnips {{{
+" Track the Engine
+Plugin 'SirVer/ultisnips'
+
+" Trigger config
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+
+
+"}}}
+
+"All plugins must be added before the following line
+call vundle#end() "required
+filetype plugin indent on "required
+
+
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"}}}
+
 set bs=2		" allow backspacing over everything in insert mode
 set ai			" always set autoindenting on
 set viminfo='20,\"50	" read/write a .viminfo file, don't store more
@@ -9,7 +51,6 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set autoindent
-set smartindent
 
 " Define "del" char to be the same backspace (saves a LOT of trouble!)
 map <C-V>127 <C-H>
