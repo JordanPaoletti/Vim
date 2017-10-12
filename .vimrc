@@ -1,114 +1,130 @@
-set nocompatible	" Use Vim defaults (much better!)
-"vundle setting {{{
-filetype off
+set nocompatible
 
-"set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+"""""""""""""""""""""""""""""""""""""""""
+" General
+"""""""""""""""""""""""""""""""""""""""""
+"how many lines of history VIM has to remember
+set history=250
 
-"let vundle manage vundle
-Plugin 'VundleVim/Vundle.vim'
+"Enable filetype plugins
+filetype plugin on
+filetype indent on
 
+"auto read when a file is changed from the outside
+set autoread
 
-"utlisnips {{{
-" Track the Engine
-Plugin 'SirVer/ultisnips'
+"map leader
+let mapleader = ","
 
-" Trigger config
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEditSplit="vertical"
+"quick saving
+nmap <leader>w :w!<cr>
 
+"escape remap
+inoremap fd <esc>
 
-"}}}
+"""""""""""""""""""""""""""""""""""""""""
+" User Interface
+"""""""""""""""""""""""""""""""""""""""""
+"lines until bottom/top before screen moves vertically with j/k
+set scrolloff=9
 
-"All plugins must be added before the following line
-call vundle#end() "required
-filetype plugin indent on "required
+"turn on the wild menu
+set wildmenu
+set wildmode=longest:full,full
 
+"turn on ruler
+set ruler
 
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"}}}
+"height of the command bar
+set cmdheight=1
 
-set bs=2		" allow backspacing over everything in insert mode
-set ai			" always set autoindenting on
-set viminfo='20,\"50	" read/write a .viminfo file, don't store more
-			" than 50 lines of registers
+"buffer becomes hidden when it is abandoned
+set hid
 
-" expand tabs
+"Allow backspacing over everything in insert mode
+set backspace=2
+
+"searching settings
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+
+"don't redraw while executing macros
+set lazyredraw
+
+"magic for regex
+set magic
+
+"set indentation and tab setting
 set expandtab
 set tabstop=4
 set shiftwidth=4
 set autoindent
+set smartindent
+set smarttab
+set wrap
+set linebreak
+set tw=500
 
-" Define "del" char to be the same backspace (saves a LOT of trouble!)
-map <C-V>127 <C-H>
+"show matching brackets
+set showmatch
+"blink time of matching brackets in decaseconds
+set mat=2
 
-"     autowrite: "on" saves a lot of trouble
-set   autowrite
+"no sounds on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
 
-" Fixes broken arrow keys hopefully
-if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
-  inoremap <silent> <C-[>OC <RIGHT>
-endif
+"left margin
+set foldcolumn=0
 
-" comments default: sr:/*,mb:*,el:*/,://,b:#,:%,:XCOMM,n:>,fb:-
-set comments=b:#,:%,:\",fb:-,n:>,n:),n:\"
-
-syntax enable
-colorscheme molokai
-
-"Code Folding
-set foldmethod=marker 
-
-
-" sets relative line numbers
+"coloring and appearence
+color desert
+set background=dark
+syntax on
 set relativenumber
 
-" my mappings
-let mapleader = ","
-let maplocalleader = "\\"
-" moves current lines up or down within text (currently buggy)
-nnoremap - ddp
-nnoremap _ ddkP
-" uses ctrl-u to uppercase the current word (buggy for i mode)
-inoremap <c-u> <esc>g~iwea
-nnoremap <c-u> g~iwe
-" makes H and L go to end of line and beginning
+"file settings
+set encoding=utf8
+set ffs=unix,dos,mac
+
+
+"""""""""""""""""""""""""""""""""""""""""
+" visual mode related
+"""""""""""""""""""""""""""""""""""""""""
+vnoremap fd <esc> 
+
+
+"""""""""""""""""""""""""""""""""""""""""
+" moving around, tabs, windows, and buffers
+"""""""""""""""""""""""""""""""""""""""""
+"move to end of line
 nnoremap L $
+"move to first nonwhitespace of line
 nnoremap H ^
-" opens vimrc in a vertical split
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-" leader shortcuts for navigating tabs
-nnoremap <leader>n :tabn<cr>
-nnoremap <leader>p :tabp<cr><cr>
-" jk to exit insert mode
-inoremap jk <esc>
-" nop remapping to elimanate bad habits
-inoremap <esc> <nop>
-" enter adds new line below in command mode
+
+"jump between tabs
+nmap <leader>m :tabn<cr>
+nmap <leader>n :tabp<cr>
+
+"move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+
+
+"insert newline under cursor w/o moving cursor. uses m marker
 nnoremap <cr> mmo<esc>`m
 
-"abbreviations for spelling
-iabbrev mian main
-"abbreviations for authorship
-iabbrev @@ Jordan Paoletti
 
-"Java abreviations
-"augroup javaAbrevs
-"        autocmd!
-"        autocmd FileType java :iabbrev <buffer> println System.out.println();<left><left><bs>
-"        autocmd FileType java :iabbrev <buffer> print System.out.print();<left><left><bs>
-"augroup end
+"leader  based commands
+nmap <leader>U g~iw
+nnoremap <leader>u g~iwe
+nnoremap <leader>ev :tabedit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
