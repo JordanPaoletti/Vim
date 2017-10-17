@@ -116,6 +116,20 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+"create splits and windows
+nmap <leader>bwv :vsplit<cr>
+nmap <leader>bws :split<cr>
+nmap <leader>bwq :quit<cr>
+nmap <leader>bwo :only<cr>
+nmap <leader>bwr :resize 
+nmap <leader>bwrv :vertical resize 
+
+"move around buffers
+nmap <leader>bls :buffers<cr>
+nmap <leader>bn :bn<cr>
+nmap <leader>bp :bp<cr>
+nmap <leader>bb :buffers<cr>:b
+nmap <leader>bd :bd<cr>
 
 
 "insert newline under cursor w/o moving cursor. uses m marker
@@ -124,7 +138,7 @@ nnoremap <cr> mmo<esc>`m
 
 "leader  based commands
 nmap <leader>U g~iw
-nnoremap <leader>u g~iwe
-nnoremap <leader>ev :tabedit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nmap <leader>u g~iwe
+nmap <leader>ev :tabedit $MYVIMRC<cr>
+nmap <leader>sv :source $MYVIMRC<cr>
 
