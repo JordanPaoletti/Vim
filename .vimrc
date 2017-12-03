@@ -135,8 +135,12 @@ nmap <leader>bd :bd<cr>
 "insert newline under cursor w/o moving cursor. uses m marker
 nnoremap <cr> mmo<esc>`m
 
+"insert mode commands
+inoremap <C-u> <esc>g~iwea
 
 "leader  based commands
+nmap <leader>cm :!make 
+nmap <leader>cc :!
 nmap <leader>U g~iw
 nmap <leader>u g~iwe
 nmap <leader>ev :tabedit $MYVIMRC<cr>
