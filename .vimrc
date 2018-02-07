@@ -1,4 +1,5 @@
 set nocompatible
+set nobackup
 
 """""""""""""""""""""""""""""""""""""""""
 " General
@@ -106,6 +107,15 @@ nnoremap L $
 "move to first nonwhitespace of line
 nnoremap H ^
 
+"remap ',' to '.'
+nnoremap . ,
+
+"allow access to .
+nnoremap <leader>. .
+
+"bottom with zz
+nnoremap G Gzz
+
 "jump between tabs
 nmap <leader>m :tabn<cr>
 nmap <leader>n :tabp<cr>
@@ -129,7 +139,7 @@ nmap <leader>bls :buffers<cr>
 nmap <leader>bn :bn<cr>
 nmap <leader>bp :bp<cr>
 nmap <leader>bb :buffers<cr>:b
-nmap <leader>bd :bd<cr>
+nmap <leader>bd :bp\|bd #<cr>
 
 
 "insert newline under cursor w/o moving cursor. uses m marker
@@ -146,3 +156,24 @@ nmap <leader>u g~iwe
 nmap <leader>ev :tabedit $MYVIMRC<cr>
 nmap <leader>sv :source $MYVIMRC<cr>
 
+"""""""""""""""""""""""""""""""""""""""""
+" Status Line
+"""""""""""""""""""""""""""""""""""""""""
+set laststatus=2
+
+set statusline=%#Question#  " Set highlighting
+set statusline+=%f           " Path to file
+set statusline+=\ -\         " Separator
+set statusline+=Type:        " Label
+set statusline+=%y           " Filetype of the file
+set statusline+=\ -\         " Separator
+set statusline+=Buf:         " Label
+set statusline+=%n           " Buffer number
+set statusline+=%=           " Switch to right side
+set statusline+=Line:        " Label
+set statusline+=%l           " current line
+set statusline+=/            " Separator
+set statusline+=%-5L         " Total Lines
+set statusline+=\ \          " Separator
+set statusline+=Col:         " Label
+set statusline+=%c\          " Column number
